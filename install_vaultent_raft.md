@@ -93,6 +93,12 @@ storage "raft" {
   node_id = "raft_node_1"
 }
 
+# Client Redirection用のURL
+api_addr = "Full URL of Vault API endpoint"
+
+# クラスター間通信に使用されるアドレス
+cluster_addr = "https://xxx.xxx.xxx.xxx:8201"
+
 # GUIを有効化
 ui = true
 
@@ -121,13 +127,13 @@ storage "raft" {
 
   # 本番クラスター構成の場合に必須（Vaultサーバー台数分記述）
   retry_join {
-    leader_api_addr = "http://xxx.xxx.xxx.xxx:8200"
+    leader_api_addr = "https://xxx.xxx.xxx.xxx:8200" # Vault-1
   }
   retry_join {
-    leader_api_addr = "http://xxx.xxx.xxx.xxx:8200"
+    leader_api_addr = "https://xxx.xxx.xxx.xxx:8200" # Vault-2
   }
   retry_join {
-    leader_api_addr = "http://xxx.xxx.xxx.xxx:8200"
+    leader_api_addr = "https://xxx.xxx.xxx.xxx:8200" # Vault-3
   }
 
 }
@@ -139,7 +145,7 @@ ui = true
 disable_mlock = true
 
 # Client Redirection用のURL
-api_addr = "Full URL of Vault API endpoint"
+api_addr = "http://xxx.xxx.xxx.xxx:8200"
 
 # クラスター間通信に使用されるアドレス
 cluster_addr = "https://xxx.xxx.xxx.xxx:8201"
